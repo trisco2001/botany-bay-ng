@@ -1,10 +1,16 @@
 <div *ngIf="hero">
 
     <h2>{{hero.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{hero.achievementPoints}}</div>
     <div>
-        <label>name:
-      <input [(ngModel)]="hero.name" placeholder="name"/>
+        <img src="{{hero.thumbnail}}" />
+    </div>
+    <div><span>Level: </span>{{hero.level}}</div>
+    <div><span>Realm: </span>{{hero.realm}}</div>
+    <div><span>Battlegroup: </span>{{hero.battlegroup}}</div>
+    <div><span>Achivement Points: </span>{{hero.achievementPoints}}</div>
+    <div><span>Honorable Kills: </span>{{hero.totalHonorableKills}}</div>
+    <div>
+        <label>name: <input [(ngModel)]="hero.name" placeholder="name"/>
     </label>
     </div>
 
