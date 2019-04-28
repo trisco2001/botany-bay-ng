@@ -1,6 +1,6 @@
 
 
-export interface Hero {
+export interface Character {
     name: string
     realm: string
     battlegroup: string

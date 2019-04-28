@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Hero } from "./hero";
 import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { MessageService } from './message.service';
-import { TokenService } from './token.service';
+import { RaceService, Race } from './race.service';
+import { CharacterService } from './character.service';
 
-interface HeroIdentity {
-  heroName: string
+export interface Hero {
+  name: string
   server: string
+  race: string
+  thumbnail: string,
+  level: number
 }
 
 @Injectable({
@@ -15,37 +17,41 @@ interface HeroIdentity {
 })
 export class HeroService {
   configUrl = "http://localhost:3001/characters"
-  heroIdentities: HeroIdentity[]
-  heroes: {[key: string]: Hero} = {}
-  constructor(readonly http: HttpClient, readonly messageService: MessageService, readonly tokenService: TokenService) { 
-    this.heroIdentities = []
+  races: Race[]
+  heroes: Map<string, Hero>
+
+  constructor(readonly messageService: MessageService, readonly raceService: RaceService, readonly characterService: CharacterService) { 
+    this.races = []
+    this.heroes = new Map<string, Hero>()
+  }
+
+  async init() {
+    this.races = await this.raceService.getRaces()
   }
 
   getHeroes(): Observable<Hero[]> {
     this.messageService.add('HeroService: fetched heroes');
-    const heroKeys = this.heroIdentities.map ((identity) => {
-      return `${identity.server}-${identity.heroName}`
-    })
-    const heroes = heroKeys.map ((key)=>this.heroes[key])
+
+    const heroes = Array.from(this.heroes.values())
     return of(heroes)
   }
 
-  getHero(id: number): Observable<Hero | undefined> {
-    this.messageService.add(`HeroService: fetched hero id=${id}`);
+  getHero(name: string, server: string): Observable<Hero | undefined> {
+    this.messageService.add(`HeroService: fetched hero id=${server}-${name}`);
 
-    const heroKeys = this.heroIdentities.map ((identity) => {
-      return `${identity.server}-${identity.heroName}`
-    })
-    const heroes = heroKeys.map ((key)=>this.heroes[key])
-    return of(heroes.filter((hero) => hero.achievementPoints == id)[0])
+    return of(this.heroes.get(`${server}-${name}`))
   }
 
-  async addHero(heroName: string, server: string) {
-    const token = this.tokenService.token
-    let hero = await this.http.get<Hero>(this.configUrl + `/${server}/${heroName}?token=${token}`).toPromise()
-    hero.thumbnail = "http://render-us.worldofwarcraft.com/character/" + hero.thumbnail
-    this.heroIdentities.push({heroName: heroName, server: server})
-    this.heroes[`${server}-${heroName}`] = hero
-    return hero
+  async addHero(name: string, server: string) {
+    let character = await this.characterService.getCharacter(name, server)
+    let matchingRace = this.races.filter((race) => race.id == character.race)[0]
+    let hero: Hero = {
+      name: character.name,
+      server: character.realm,
+      thumbnail: "http://render-us.worldofwarcraft.com/character/" + character.thumbnail,
+      race: matchingRace.name,
+      level: character.level
+    }
+    this.heroes.set(`${server}-${name}`, hero)
   }
 }

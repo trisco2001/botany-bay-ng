@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
 import { TokenService } from './token.service';
+import { RaceService } from './race.service';
+import { HeroService } from './hero.service';
 
 interface AuthToken {
   authToken: string
@@ -15,7 +17,7 @@ export class AppComponent implements OnInit {
   title = 'Botany Bay';
   token = 'LOADING, BUTTERCUPS'
 
-  constructor(readonly authenticationService: AuthenticationService, private tokenService: TokenService) {}
+  constructor(readonly authenticationService: AuthenticationService, private tokenService: TokenService, private raceService: RaceService, private heroService: HeroService) {}
 
   ngOnInit() {
     this.getAuthToken()
@@ -25,6 +27,9 @@ export class AppComponent implements OnInit {
     this.authenticationService.getToken().subscribe((data) => {
       this.token = data.authToken
       this.tokenService.token = data.authToken
+      this.raceService.getRaces().then( (races) => {
+        this.heroService.init()
+      })
     });
   }
 }
