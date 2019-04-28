@@ -10,7 +10,29 @@ import { MessageService } from '../message.service';
 export class HeroesComponent implements OnInit {
   heroes?: Hero[];
 
-  constructor(private heroService: HeroService, private messageService: MessageService) { }
+  data: any
+
+  constructor(private heroService: HeroService, private messageService: MessageService) { 
+
+    this.data = {
+      labels: ['Scorsby', 'B', 'C'],
+      datasets: [
+        {
+          data: [300, 50, 100],
+          backgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+          ],
+          hoverBackgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+          ]
+        }]
+    };
+
+  }
 
   ngOnInit() {
     this.getHeroes();
