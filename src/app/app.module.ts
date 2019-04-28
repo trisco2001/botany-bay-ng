@@ -10,19 +10,33 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+import {
+  ButtonModule,
+  ChartModule,
+  DialogModule,
+  InputTextModule,
+  PanelModule,
+  SharedModule,
+  SidebarModule,
+  TreeModule
+} from 'primeng/primeng';
+import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    DoughnutChartComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
