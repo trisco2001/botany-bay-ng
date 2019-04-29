@@ -11,9 +11,10 @@ export interface Hero {
   server: string
   race: string
   class: string
-  thumbnail: string,
-  level: number,
+  thumbnail: string
+  level: number
   color: string
+  itemLevel: number
 }
 
 @Injectable({
@@ -40,11 +41,10 @@ export class HeroService {
     this.messageService.add('HeroService: fetched heroes');
 
     const heroes = Array.from(this.heroes.values())
-    return of(heroes)
+    return of(heroes.sort((a, b) => b.itemLevel - a.itemLevel))
   }
 
   getHero(name: string, server: string): Observable<Hero | undefined> {
-
     return of(this.heroes.get(`${server}-${name}`))
   }
 
@@ -60,8 +60,10 @@ export class HeroService {
       race: matchingRace.name,
       level: character.level,
       class: matchingClass.name,
-      color: color
+      color: color,
+      itemLevel: character.items.averageItemLevelEquipped
     }
+
     this.messageService.add(`HeroService: added hero id=${server}-${name}`);
     this.messageService.add(JSON.stringify(hero))
     this.heroes.set(`${server}-${name}`, hero)

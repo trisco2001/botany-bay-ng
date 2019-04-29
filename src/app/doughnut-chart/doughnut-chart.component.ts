@@ -7,7 +7,7 @@ import { hasParentInjector } from '@angular/core/src/render3/util';
   selector: 'chart-doughnut',
   template: `
     <div style="height: 250px; width: 400px; background-color: #AAA">
-    <p-chart type="doughnut" [data]="data" [responsive]="true" 
+    <p-chart type="horizontalBar" [data]="data" [options]="options" [responsive]="true" 
         height="250" width="400"></p-chart>
     </div>
   `
@@ -15,6 +15,7 @@ import { hasParentInjector } from '@angular/core/src/render3/util';
 export class DoughnutChartComponent implements OnInit, OnChanges {
 
   data: any
+  options: any
 
   @Input() heroes?: Hero[]
 
@@ -45,7 +46,7 @@ export class DoughnutChartComponent implements OnInit, OnChanges {
     else if (changes.heroes) {
       this.messageService.add(JSON.stringify(this.heroes))
       const labels = this.heroes.map((hero) => {return hero.name})
-      const data = this.heroes.map((hero)=> hero.level)
+      const data = this.heroes.map((hero)=> hero.itemLevel)
       const colors = this.heroes.map((hero)=> hero.color)
       this.data = {
         labels: labels,
@@ -54,8 +55,14 @@ export class DoughnutChartComponent implements OnInit, OnChanges {
             data: data,
             backgroundColor: colors,
             hoverBackgroundColor: colors
-          }]
+          }
+        ]
       };
+      this.options = {
+        legend: {
+          display: false
+        }
+      }
     }
   }
 
