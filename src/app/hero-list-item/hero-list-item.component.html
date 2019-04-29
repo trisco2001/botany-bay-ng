@@ -1,0 +1,5 @@
+<div [ngStyle]="{ 'background-color': hero.color }">
+  <a routerLink="/detail/{{hero.server}}/{{hero.name}}" class="list-item">
+    <span class="badge"><img src="{{hero.thumbnail}}"></span><span class="badgeText">{{hero.name}}</span>
+  </a>
+</div> 

@@ -46,21 +46,14 @@ export class DoughnutChartComponent implements OnInit, OnChanges {
       this.messageService.add(JSON.stringify(this.heroes))
       const labels = this.heroes.map((hero) => {return hero.name})
       const data = this.heroes.map((hero)=> hero.level)
+      const colors = this.heroes.map((hero)=> hero.color)
       this.data = {
         labels: labels,
         datasets: [
           {
             data: data,
-            backgroundColor: [
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56"
-            ],
-            hoverBackgroundColor: [
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56"
-            ]
+            backgroundColor: colors,
+            hoverBackgroundColor: colors
           }]
       };
     }

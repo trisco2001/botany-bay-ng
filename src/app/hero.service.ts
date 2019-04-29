@@ -4,6 +4,7 @@ import { MessageService } from './message.service';
 import { RaceService, Race } from './race.service';
 import { CharacterService } from './character.service';
 import { ClassService, Class } from './class.service';
+import { ClassColorService } from './class-color.service';
 
 export interface Hero {
   name: string
@@ -11,7 +12,8 @@ export interface Hero {
   race: string
   class: string
   thumbnail: string,
-  level: number
+  level: number,
+  color: string
 }
 
 @Injectable({
@@ -23,7 +25,7 @@ export class HeroService {
   classes: Class[]
   heroes: Map<string, Hero>
 
-  constructor(readonly messageService: MessageService, readonly raceService: RaceService, readonly characterService: CharacterService, readonly classService: ClassService) { 
+  constructor(readonly messageService: MessageService, readonly raceService: RaceService, readonly characterService: CharacterService, readonly classService: ClassService, readonly classColorService: ClassColorService) { 
     this.races = []
     this.classes = []
     this.heroes = new Map<string, Hero>()
@@ -42,7 +44,6 @@ export class HeroService {
   }
 
   getHero(name: string, server: string): Observable<Hero | undefined> {
-    this.messageService.add(`HeroService: fetched hero id=${server}-${name}`);
 
     return of(this.heroes.get(`${server}-${name}`))
   }
@@ -51,14 +52,18 @@ export class HeroService {
     let character = await this.characterService.getCharacter(name, server)
     let matchingRace = this.races.filter((r) => r.id == character.race)[0]
     let matchingClass = this.classes.filter((c) => c.id == character.class)[0]
+    let color = this.classColorService.getColorForClass(matchingClass.id)
     let hero: Hero = {
       name: character.name,
       server: character.realm,
       thumbnail: "http://render-us.worldofwarcraft.com/character/" + character.thumbnail,
       race: matchingRace.name,
       level: character.level,
-      class: matchingClass.name
+      class: matchingClass.name,
+      color: color
     }
+    this.messageService.add(`HeroService: added hero id=${server}-${name}`);
+    this.messageService.add(JSON.stringify(hero))
     this.heroes.set(`${server}-${name}`, hero)
   }
 }

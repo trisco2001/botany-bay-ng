@@ -13,9 +13,7 @@
 </div>
 <ul class="heroes">
     <li *ngFor="let hero of heroes">
-        <a routerLink="/detail/{{hero.server}}/{{hero.name}}">
-            <span class="badge"><img src="{{hero.thumbnail}}"></span><span class="badgeText">{{hero.name}}</span>
-        </a>
+        <hero-list-item [hero]="hero"></hero-list-item>
     </li>
 </ul>
-<chart-doughnut style="float: right" [heroes]="heroes"></chart-doughnut>
+<chart-doughnut [heroes]="heroes"></chart-doughnut>
