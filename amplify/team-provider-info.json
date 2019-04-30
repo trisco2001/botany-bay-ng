@@ -21,6 +21,13 @@
             "UnauthRoleName": "botanybayng-20190429133142-unauthRole",
             "StackName": "botanybayng-20190429133142",
             "StackId": "arn:aws:cloudformation:us-west-2:603701440378:stack/botanybayng-20190429133142/cd12df00-6abd-11e9-89f2-02ee71065ed8"
+        },
+        "categories": {
+            "auth": {
+                "cognito0b7bc02f": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"114979085250938\",\"client_secret\":\"62ad967ae718663876972f36e0c7de37\"},{\"ProviderName\":\"Google\",\"client_id\":\"254158084832-7945o350rgb9k2kevgg00qqe4vhm582m.apps.googleusercontent.com\",\"client_secret\":\"NqUura4iPxOUhclbnYg91woi\"},{\"ProviderName\":\"LoginWithAmazon\",\"client_id\":\"amzn1.application-oa2-client.24c5af66d00e4475a760dec42749157f\",\"client_secret\":\"1352bab5723c97e90429466f7ed4d668269cb85e33d4af28aba13dccb22e514f\"}]"
+                }
+            }
         }
     }
 }
