@@ -21,7 +21,6 @@ export interface Hero {
   providedIn: 'root'
 })
 export class HeroService {
-  configUrl = "http://localhost:3001/characters"
   races: Race[]
   classes: Class[]
   heroes: Map<string, Hero>

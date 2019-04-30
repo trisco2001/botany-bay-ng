@@ -1,41 +1,24 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { Hero } from '../hero.service';
 import { MessageService } from '../message.service';
-import { hasParentInjector } from '@angular/core/src/render3/util';
 
 @Component({
   selector: 'chart-doughnut',
   template: `
-    <div style="height: 250px; width: 400px; background-color: #AAA">
-    <p-chart type="horizontalBar" [data]="data" [options]="options" [responsive]="true" 
-        height="250" width="400"></p-chart>
-    </div>
+  <p-chart type="horizontalBar" [data]="data" [options]="options" [responsive]="true"></p-chart>
   `
 })
 export class DoughnutChartComponent implements OnInit, OnChanges {
 
   data: any
   options: any
+  listHeight: number
 
   @Input() heroes?: Hero[]
 
   constructor(private messageService: MessageService) {
+    this.listHeight = 0
     this.data = {
-      labels: ['A', 'B', 'C'],
-      datasets: [
-        {
-          data: [300, 50, 100],
-          backgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56"
-          ],
-          hoverBackgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56"
-          ]
-        }]
     };
   }
 
@@ -64,6 +47,8 @@ export class DoughnutChartComponent implements OnInit, OnChanges {
         }
       }
     }
+
+    this.listHeight = 40 * this.heroes.length
   }
 
   ngOnInit() {

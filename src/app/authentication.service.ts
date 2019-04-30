@@ -9,7 +9,7 @@ export interface AuthToken {
   providedIn: 'root'
 })
 export class AuthenticationService {
-  configUrl = "http://localhost:3000/auth"
+  configUrl = "https://p1hflp6h09.execute-api.us-west-2.amazonaws.com/dev/auth"
   constructor(readonly http: HttpClient) { }
 
   getToken() {

@@ -18,7 +18,7 @@ interface ClassResponse {
 })
 export class ClassService {
 
-  configUrl = "http://localhost:3001/classes"
+  configUrl = "https://i390mm2xsg.execute-api.us-west-2.amazonaws.com/dev/classes"
 
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 

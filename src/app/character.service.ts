@@ -8,7 +8,7 @@ import { Character } from './character';
 })
 export class CharacterService {
 
-  configUrl = "http://localhost:3001/characters"
+  configUrl = "https://i390mm2xsg.execute-api.us-west-2.amazonaws.com/dev/characters"
 
   constructor(private http: HttpClient, readonly tokenService: TokenService) { }
 

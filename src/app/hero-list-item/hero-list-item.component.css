@@ -1,3 +1,8 @@
 .badgeText {
-    color: white
+    color: white;
+}
+
+.list-item img {
+    width: 40px;
+    height: 40px;
 }
