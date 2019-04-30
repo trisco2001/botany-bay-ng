@@ -22,6 +22,7 @@ import {
 } from 'primeng/primeng';
 import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
 import { HeroListItemComponent } from './hero-list-item/hero-list-item.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HeroListItemComponent } from './hero-list-item/hero-list-item.component
     MessagesComponent,
     DashboardComponent,
     DoughnutChartComponent,
-    HeroListItemComponent
+    HeroListItemComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule,
