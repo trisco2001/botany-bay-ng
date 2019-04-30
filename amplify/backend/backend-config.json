@@ -10,5 +10,11 @@
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation"
 		}
+	},
+	"storage": {
+		"botanybaydb": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation"
+		}
 	}
 }

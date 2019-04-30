@@ -23,6 +23,7 @@ import {
 import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
 import { HeroListItemComponent } from './hero-list-item/hero-list-item.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
 @NgModule({
   declarations: [
@@ -40,9 +41,12 @@ import { PrivacyComponent } from './privacy/privacy.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ChartModule
+    ChartModule,
+    AmplifyAngularModule
   ],
-  providers: [],
+  providers: [
+    AmplifyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,6 +3,7 @@ import { AuthenticationService } from './authentication.service';
 import { TokenService } from './token.service';
 import { RaceService } from './race.service';
 import { HeroService } from './hero.service';
+import { AmplifyService } from 'aws-amplify-angular';
 
 interface AuthToken {
   authToken: string
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   title = 'Botany Bay';
   token = 'LOADING, BUTTERCUPS'
 
-  constructor(readonly authenticationService: AuthenticationService, private tokenService: TokenService, private raceService: RaceService, private heroService: HeroService) {}
+  constructor(readonly amplifyService: AmplifyService, readonly authenticationService: AuthenticationService, private tokenService: TokenService, private raceService: RaceService, private heroService: HeroService) {}
 
   ngOnInit() {
     this.getAuthToken()
