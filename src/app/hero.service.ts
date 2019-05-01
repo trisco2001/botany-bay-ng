@@ -53,6 +53,7 @@ export class HeroService {
     }
 
     for (const userCharacter of this.userCharacters){
+      console.log(userCharacter)
       let character = await this.characterService.getCharacter(userCharacter.name, userCharacter.server)
       let matchingRace = this.races.filter((r) => r.id == character.race)[0]
       let matchingClass = this.classes.filter((c) => c.id == character.class)[0]
