@@ -1,10 +1,12 @@
 <amplify-authenticator></amplify-authenticator>
-<h1>{{title}}</h1>
-<nav>
-    <a routerLink="/dashboard">Dashboard</a>
-    <a routerLink="/heroes">Heroes</a>
-    <a routerLink="/privacy">About</a>
-</nav>
-<router-outlet></router-outlet>
+<div *ngIf="user">
+    <h1>{{title}}</h1>
+    <nav>
+        <a routerLink="/dashboard">Dashboard</a>
+        <a routerLink="/heroes">Heroes</a>
+        <a routerLink="/privacy">About</a>
+    </nav>
+    <router-outlet></router-outlet>
+</div>
 <app-messages></app-messages>
 <h4>{{token}}</h4>

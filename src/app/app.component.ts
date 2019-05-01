@@ -4,6 +4,7 @@ import { TokenService } from './token.service';
 import { RaceService } from './race.service';
 import { HeroService } from './hero.service';
 import { AmplifyService } from 'aws-amplify-angular';
+import { MessageService } from './message.service';
 
 interface AuthToken {
   authToken: string
@@ -18,10 +19,36 @@ export class AppComponent implements OnInit {
   title = 'Botany Bay';
   token = 'LOADING, BUTTERCUPS'
 
-  constructor(readonly amplifyService: AmplifyService, readonly authenticationService: AuthenticationService, private tokenService: TokenService, private raceService: RaceService, private heroService: HeroService) {}
+  signedIn: boolean;
+  user: any;
+  greeting: string;
+
+  constructor(
+    readonly amplifyService: AmplifyService, 
+    readonly authenticationService: AuthenticationService, 
+    private tokenService: TokenService, 
+    private raceService: RaceService, 
+    private heroService: HeroService, 
+    private messageService: MessageService) {
+    this.signedIn = false
+    this.greeting = ""
+    this.user = null
+  }
 
   ngOnInit() {
     this.getAuthToken()
+    this.amplifyService.authStateChange$
+      .subscribe(authState => {
+        this.signedIn = authState.state === 'signedIn';
+        if (!authState.user) {
+          this.messageService.add("User logged out")
+          this.user = null;
+        } else {
+          this.messageService.add(JSON.stringify(authState.user))
+          this.user = authState.user;
+          this.greeting = "Hello " + this.user.username;
+        }
+    });
   }
 
   getAuthToken() {

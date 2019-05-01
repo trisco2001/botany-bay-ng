@@ -18,7 +18,7 @@ interface RaceResponse {
 })
 export class RaceService {
 
-  configUrl = "https://i390mm2xsg.execute-api.us-west-2.amazonaws.com/dev/races"
+  configUrl = "https://zxxipdok10.execute-api.us-west-2.amazonaws.com/dev/races"
 
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
