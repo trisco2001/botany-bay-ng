@@ -1,6 +1,6 @@
 {
     "identityPoolName": "cognito0b7bc02f_identitypool_0b7bc02f",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "lambdaLogPolicy": "cognito0b7bc02f_lambda_log_policy",
     "openIdLambdaRoleName": "cognito0b7bc02f_openid_lambda_role",
     "openIdRolePolicy": "cognito0b7bc02f_openid_pass_role_policy",

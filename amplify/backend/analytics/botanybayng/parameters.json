@@ -1,0 +1,20 @@
+{
+    "appName": "botanybayng",
+    "roleName": "pinpointLambdaRole20b06324",
+    "cloudWatchPolicyName": "cloudWatchPolicy20b06324",
+    "pinpointPolicyName": "pinpointPolicy20b06324",
+    "authPolicyName": "pinpoint_amplify_20b06324",
+    "unauthPolicyName": "pinpoint_amplify_20b06324",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

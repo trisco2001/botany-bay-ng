@@ -141,9 +141,6 @@ Parameters:
       
   hostedUIProviderMeta:
     Type: String
-            
-  hostedUIProviderCreds:
-    Type: String
               
   addCallbackOnUpdate:
     Type: String
@@ -152,6 +149,9 @@ Parameters:
     Type: String
           
   oAuthMetadata:
+    Type: String
+            
+  hostedUIProviderCreds:
     Type: String
           
 Conditions:
