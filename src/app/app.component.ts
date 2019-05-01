@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
           this.messageService.add("User logged out")
           this.user = null;
         } else {
-          this.messageService.add(JSON.stringify(authState.user))
+          this.messageService.add("User logged in")
           this.user = authState.user;
           this.greeting = "Hello " + this.user.username;
         }
