@@ -47,6 +47,7 @@ export class AppComponent implements OnInit {
           this.messageService.add("User logged in")
           this.user = authState.user;
           this.greeting = "Hello " + this.user.username;
+          this.heroService.init()
         }
     });
   }
